@@ -1,6 +1,6 @@
 owner: bakito
-git-repo: helm-charts
+git-repo: sandbox-charts
 git-base-url: https://api.github.com/
 git-upload-url: https://uploads.github.com/
-charts-repo: https://bakito.github.io/helm-charts/
+charts-repo: https://bakito.github.io/sandbox-charts/
 pages-branch: main
