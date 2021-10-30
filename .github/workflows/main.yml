@@ -45,6 +45,6 @@ jobs:
           pathInArchive: cr
 
       - name: Upload Chart
-        run: cr upload --config cr.yaml
+        run: cr upload --git-repo=${{github.event.repository.name}}
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"
