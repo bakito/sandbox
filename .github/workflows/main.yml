@@ -4,13 +4,9 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-    tags:
-      - '*'
-  pull_request:
-    branches: [ main ]
+  release:
+    types:
+      - published
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,13 +30,9 @@ jobs:
 
       - name: Install Helm
         uses: azure/setup-helm@v1
-        with:
-          version: v3.4.0
+
+      - name: Build chart
+        run: helm package ./charts/sandbox/ --version ${{github.event.release.tag_name }} --app-version v${{github.event.release.tag_name }} -d dist
 
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.2.1
-       # with:
-       #   charts_dir: helm
-        #  config: cr.yaml
-        env:
-          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        uses: wget -qO- https://github.com/helm/chart-releaser/releases/download/v1.2.1/chart-releaser_1.2.1_linux_amd64.tar.gz | tar xvz -
