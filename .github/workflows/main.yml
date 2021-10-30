@@ -35,7 +35,7 @@ jobs:
 
       - name: Build chart
         #run: helm package ./charts/sandbox/ --version ${{github.event.release.tag_name }} --app-version v${{github.event.release.tag_name }} -d dist
-        run: helm package ./charts/sandbox/ --version 1.0.18 --app-version v1.0.12 -d dist
+        run: helm package ./charts/sandbox/ --version 1.0.19 --app-version v1.0.12 -d dist
 
       - name: Install chart-releaser
         uses: engineerd/configurator@v0.0.8
@@ -45,6 +45,6 @@ jobs:
           pathInArchive: cr
 
       - name: Upload Chart
-        run: cr upload --config cr.yaml
+        run: cr upload --git-repo=${{github.event.repository.name}}
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"
