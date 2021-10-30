@@ -35,7 +35,7 @@ jobs:
 
       - name: Build chart
         #run: helm package ./charts/sandbox/ --version ${{github.event.release.tag_name }} --app-version v${{github.event.release.tag_name }} -d dist
-        run: helm package ./charts/sandbox/ --version 1.0.2 --app-version v1.0.2 -d dist
+        run: helm package ./charts/sandbox/ --version 1.0.18 --app-version v1.0.12 -d dist
 
       - name: Install chart-releaser
         uses: engineerd/configurator@v0.0.8
