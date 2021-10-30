@@ -35,4 +35,4 @@ jobs:
         run: helm package ./charts/sandbox/ --version ${{github.event.release.tag_name }} --app-version v${{github.event.release.tag_name }} -d dist
 
       - name: Run chart-releaser
-        uses: wget -qO- https://github.com/helm/chart-releaser/releases/download/v1.2.1/chart-releaser_1.2.1_linux_amd64.tar.gz | tar xvz -
+        run: wget -qO- https://github.com/helm/chart-releaser/releases/download/v1.2.1/chart-releaser_1.2.1_linux_amd64.tar.gz | tar xvz -
