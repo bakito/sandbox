@@ -7,6 +7,8 @@ on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
+    tags:
+      - '*'
   pull_request:
     branches: [ main ]
 
@@ -37,5 +39,8 @@ jobs:
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.1
+        with:
+          charts_dir: helm
+          config: cr.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
